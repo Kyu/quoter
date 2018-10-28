@@ -8,7 +8,8 @@ Open the file by double clicking or using python quoter.pyw
 (change the extension to .py if you want to see the window while using the program)
 
 Enter a quote in the quotes.json file (examples are provided)
-Go into any textbox and type :quotename: (then a space), and it should be replaced with whatever you entered into the json
+Go into any textbox and type :quotename: (then a space),
+and it should be replaced with whatever you entered into the json
 
 To disable type @@offquote
 To re-enable/reload the config file type @@onquote
@@ -28,7 +29,8 @@ import keyboard
 help_text = \
     '''
 Enter a quote in the quotes.json file (examples are provided)
-Go into any textbox and type :quotename: (then a space), and it should be replaced with whatever you entered into the json
+Go into any textbox and type :quotename: (then a space),
+and it should be replaced with whatever you entered into the json
 You can also set '@@clipboard@@' to true in the quotes.json file to enable copying the quote to clipboard,
 as opposed to typing it out
 
@@ -45,6 +47,8 @@ elif platform == 'nt':
     clip = 'clip'
 elif platform == 'mac':
     clip = 'pbcopy'
+
+quotes = {}
 
 
 def to_clipboard(text):
@@ -73,7 +77,9 @@ def load_json(tries=0):
             load_json(tries+1)
 
 
-def add_quotes():
+def add_quotes(first=False):
+    if not first:
+        remove_quotes()
     load_json()
     for k, v in quotes.items():
         if k != '@@clipboard@@':
@@ -85,11 +91,14 @@ def add_quotes():
 
 
 def remove_quotes():
+    global quotes
     for k, v in quotes.items():
-        keyboard.remove_word_listener(":{}:".format(k))
+        if k != '@@clipboard@@':
+            keyboard.remove_word_listener(":{}:".format(k))
+    quotes = {}
 
 
-add_quotes()
+add_quotes(first=True)
 keyboard.add_word_listener('@@onquote', add_quotes, timeout=5)
 keyboard.add_word_listener('@@offquote', remove_quotes, timeout=5)
 keyboard.add_word_listener('@@help', help_box, timeout=5)
