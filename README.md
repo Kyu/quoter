@@ -1,7 +1,9 @@
 # Quoter
 
 - Add your quotes to the quote.json file and type :quotename: (then a space) to enter the quote
-- '@@offquote' turns off the quoting, '@@onquote' reloads the program/turns it back on
+- Typing `@@help` in any text box shows a help message box
+- `@@offquote` turns off the quoting and `@@onquote` reloads the program/turns quoting back on
+- You can also set '@@clipboard@@' to true in the quotes.json file to enable copying the quote to clipboard, as opposed to typing it out
 - Ctrl + Alt + Q stops the program entirely
 
 ### Building
