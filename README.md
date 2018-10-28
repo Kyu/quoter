@@ -6,7 +6,7 @@
 
 ### Building
 ##### To build the exe of this program, run these commands
-- `git clone xx`
+- `git clone https://github.com/Kyu/quoter.git`
 - `cd quoter`
 - `to-exe.bat`
 - There should be a `quoter.exe` file in `/dist/quoter`
