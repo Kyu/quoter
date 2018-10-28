@@ -17,6 +17,7 @@ To stop the program entirely use Ctrl + Alt + Q
 """
 import ctypes
 import os
+import subprocess
 import functools
 from json import (
     load,
@@ -47,8 +48,7 @@ elif platform == 'mac':
 
 
 def to_clipboard(text):
-    print(text)
-    os.system('echo {text}| {clip}'.format(text=text, clip=clip))
+    subprocess.call('echo {text}| {clip}'.format(text=text, clip=clip), shell=True)
 
 
 def message_box(title, text, style):
