@@ -1,0 +1,1 @@
+pyinstaller -y -F --noconsole -i "./quote.ico"  "./quoter.pyw"
